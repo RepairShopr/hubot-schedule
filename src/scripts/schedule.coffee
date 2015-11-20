@@ -85,7 +85,13 @@ schedule = (robot, msg, pattern, message) ->
 createSchedule = (robot, id, pattern, user, message) ->
   if isCronPattern(pattern)
     return createCronSchedule robot, id, pattern, user, message
-  
+
+  if pattern.includes('-')
+	  day = (new Date).getDay()
+	  month = (new Date).getMonth()
+	  year = (new Date).getFullYear()
+	  pattern = year + '-' + month + '-' + day + ' ' + pattern
+
   date = Date.parse(pattern)
   if !isNaN(date)
     if date < Date.now()
