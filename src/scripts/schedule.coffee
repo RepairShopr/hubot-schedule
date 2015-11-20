@@ -86,7 +86,7 @@ createSchedule = (robot, id, pattern, user, message) ->
   if isCronPattern(pattern)
     return createCronSchedule robot, id, pattern, user, message
 
-  if pattern.indexOf('-') > -1
+  if pattern.indexOf('-') == -1
 	  day = (new Date).getDay()
 	  month = (new Date).getMonth()
 	  year = (new Date).getFullYear()
